@@ -14,42 +14,59 @@ const App = () => {
   const [numOfChar, setNumOfChar] = useState<number[]>([]);
   const [output, setOutput] = useState<string>("");
 
-  const breakStringIntoArray = (str: string) => {
-    const newArr = str.split(" ");
+  // const breakStringIntoArray = (str: string) => {
+  //   const newArr = str.split(" ");
 
-    setWordArr(newArr);
+  //   setWordArr(newArr);
+  // };
+
+  // const findNumOfChar = (arrOfWord: string[]) => {
+  //   const newArr: number[] = [];
+  //   arrOfWord.forEach((word) => {
+  //     newArr.push(word.length);
+  //   });
+
+  //   setNumOfChar(newArr);
+  // };
+
+  // const findTheLargestWord = (arrOfWord: string[], arrOfCharNum: number[]) => {
+  //   const largestNum = Math.max.apply(Math, arrOfCharNum);
+  //   const indexOfLargestNum = arrOfCharNum.indexOf(largestNum);
+
+  //   const largestWord = arrOfWord[indexOfLargestNum];
+
+  //   setOutput(`The largest word is "${largestWord}"`);
+  // };
+
+  // useEffect(() => {
+  //   breakStringIntoArray(inputText);
+  // }, [inputText]);
+
+  // useEffect(() => {
+  //   findNumOfChar(wordArr);
+  // }, [wordArr]);
+
+  const handleBtnClick = (str: string) => {
+    // if (wordArr.length !== 0 && numOfChar.length !== 0) {
+    //   findTheLargestWord(wordArr, numOfChar);
+    // }
+
+    const longestWord = theLargestWord(str);
+    setOutput(`The largest word is "${longestWord}"`);
   };
 
-  const findNumOfChar = (arrOfWord: string[]) => {
-    const newArr: number[] = [];
-    arrOfWord.forEach((word) => {
-      newArr.push(word.length);
-    });
+  const theLargestWord = (str: string): string => {
+    const strArr: string[] = str.split(" ");
+    let largest = 0;
+    let word = "";
 
-    setNumOfChar(newArr);
-  };
-
-  const findTheLargestWord = (arrOfWord: string[], arrOfCharNum: number[]) => {
-    const largestNum = Math.max.apply(Math, arrOfCharNum);
-    const indexOfLargestNum = arrOfCharNum.indexOf(largestNum);
-
-    const largestWord = arrOfWord[indexOfLargestNum];
-
-    setOutput(`The largest word is "${largestWord}"`);
-  };
-
-  useEffect(() => {
-    breakStringIntoArray(inputText);
-  }, [inputText]);
-
-  useEffect(() => {
-    findNumOfChar(wordArr);
-  }, [wordArr]);
-
-  const handleBtnClick = () => {
-    if (wordArr.length !== 0 && numOfChar.length !== 0) {
-      findTheLargestWord(wordArr, numOfChar);
+    for (let i = 0; i < strArr.length; i++) {
+      if (largest < strArr[i].length) {
+        largest = strArr[i].length;
+        word = strArr[i];
+      }
     }
+    return word;
   };
 
   return (
@@ -70,7 +87,11 @@ const App = () => {
         <div className='output'>{output}</div>
       </div>
       <div className='btn-container'>
-        <button className='btn' type='button' onClick={handleBtnClick}>
+        <button
+          className='btn'
+          type='button'
+          onClick={() => handleBtnClick(inputText)}
+        >
           Check
         </button>
       </div>
