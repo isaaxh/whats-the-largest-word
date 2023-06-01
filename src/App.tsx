@@ -47,6 +47,7 @@ const App = () => {
   }, [wordArr]);
 
   const handleBtnClick = (str: string) => {
+    console.log(str);
     if (wordArr.length !== 0 && numOfChar.length !== 0) {
       findTheLargestWord(wordArr, numOfChar);
     }
