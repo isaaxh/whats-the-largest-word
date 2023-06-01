@@ -9,11 +9,19 @@ import "./App.css";
 // then find the corresponding word of the same index in the word array
 
 const App = () => {
-  const [inputText, setInputText] = useState("");
-  const [output, setOutput] = useState("");
+  const [inputText, setInputText] = useState<string>("");
+  const [wordArr, setWordArr] = useState<string[]>([]);
+  const [output, setOutput] = useState<string>("");
+
+  const breakStringIntoArray = (str: string) => {
+    const newArr = str.split(" ");
+
+    setWordArr(newArr);
+  };
 
   useEffect(() => {
-    console.log(inputText);
+    // console.log(inputText);
+    breakStringIntoArray(inputText);
   }, [inputText]);
 
   return (
