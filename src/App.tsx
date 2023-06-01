@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 
 // break the sentence down to an array of words
@@ -9,7 +9,12 @@ import "./App.css";
 // then find the corresponding word of the same index in the word array
 
 const App = () => {
+  const [inputText, setInputText] = useState("");
   const [output, setOutput] = useState("");
+
+  useEffect(() => {
+    console.log(inputText);
+  }, [inputText]);
 
   return (
     <div className='container'>
@@ -19,6 +24,7 @@ const App = () => {
           <input
             className='input-text'
             type='text'
+            onChange={(e) => setInputText(e.target.value)}
             placeholder='Enter a sentence here...'
           />
         </div>
