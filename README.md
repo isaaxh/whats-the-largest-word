@@ -13,3 +13,6 @@ To be considered complete this project must include the following:
 - And fully functional logic that correctly finds the largest word
 
 ## Screenshot
+
+![alert](./src/assets/largestword.png)
+![alert](./src/assets/largestword-demonstration.png)
