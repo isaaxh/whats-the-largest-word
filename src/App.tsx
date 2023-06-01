@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import { logEvent } from "firebase/analytics";
 
 // break the sentence down to an array of words - done
 // then cycle through each word of the array - done
@@ -40,12 +39,10 @@ const App = () => {
   };
 
   useEffect(() => {
-    // console.log(inputText);
     breakStringIntoArray(inputText);
   }, [inputText]);
 
   useEffect(() => {
-    // console.log(wordArr);
     findNumOfChar(wordArr);
   }, [wordArr]);
 
