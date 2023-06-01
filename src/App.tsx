@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import { logEvent } from "firebase/analytics";
 
 // break the sentence down to an array of words - done
 // then cycle through each word of the array - done
@@ -29,6 +30,15 @@ const App = () => {
     setNumOfChar(newArr);
   };
 
+  const findTheLargestWord = (arrOfWord: string[], arrOfCharNum: number[]) => {
+    const largestNum = Math.max.apply(Math, arrOfCharNum);
+    const indexOfLargestNum = arrOfCharNum.indexOf(largestNum);
+
+    const largestWord = arrOfWord[indexOfLargestNum];
+
+    setOutput(`The largest word is "${largestWord}"`);
+  };
+
   useEffect(() => {
     // console.log(inputText);
     breakStringIntoArray(inputText);
@@ -38,6 +48,12 @@ const App = () => {
     // console.log(wordArr);
     findNumOfChar(wordArr);
   }, [wordArr]);
+
+  const handleBtnClick = () => {
+    if (wordArr.length !== 0 && numOfChar.length !== 0) {
+      findTheLargestWord(wordArr, numOfChar);
+    }
+  };
 
   return (
     <div className='container'>
@@ -57,7 +73,7 @@ const App = () => {
         <div className='output'>{output}</div>
       </div>
       <div className='btn-container'>
-        <button className='btn' type='button'>
+        <button className='btn' type='button' onClick={handleBtnClick}>
           Check
         </button>
       </div>
